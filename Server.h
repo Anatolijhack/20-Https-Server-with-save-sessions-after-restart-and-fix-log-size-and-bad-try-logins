@@ -1,0 +1,15 @@
+#pragma once
+#include "Session.h"
+#include <boost/asio/ssl.hpp>
+
+class Server
+{
+private:
+	tcp::acceptor acceptor;
+	ThreadPool& pool;
+	Router& router;
+	boost::asio::ssl::context ssl_context;
+public:
+	Server(boost::asio::io_context& io, short port, ThreadPool& pool, Router& router);
+	void accept();
+};
